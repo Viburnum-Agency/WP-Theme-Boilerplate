@@ -35,3 +35,10 @@ npm run watch --sourcemaps
 ```
 npm run build
 ```
+## Makefile
+| Command      | Description                                          |
+|--------------|------------------------------------------------------|
+| `make`       | Install deps, build theme, create .zip of the plugin |
+| `make build` | Install deps, build theme                            |
+| `make zip`   | Create .zip of the theme                             |
+| `make clean` | Delete .zip of the theme                             |
