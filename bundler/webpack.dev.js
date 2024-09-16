@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const config = require('./config.js')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = (env) => {
 
@@ -11,20 +12,16 @@ module.exports = (env) => {
       path: path.resolve(__dirname, '../assets/dist/js'),
       filename: 'bundle.min.js'
     },
-    devServer: {
-      host: '127.0.0.1',
-      port: 80,
-      proxy: {
-        '/': config.datas.localPath
-      },
-      watchFiles: '**/*',
-      hot: false,
-      open: 'external',
-      client: {
-        overlay: false,
-      }
-    },
     plugins: [
+      new BrowserSyncPlugin({
+        files: '**/*',
+        host: '127.0.0.1',
+        injectChanges: false,
+        notify: false,
+        open: 'external',
+        port: 80,
+        proxy: config.datas.localPath
+      }),
       new MiniCSSExtractPlugin({
         filename: '../css/style.min.css'
       }),
